@@ -1,74 +1,286 @@
+/* ==========================================================================
+   1. CONFIGURAÇÕES INICIAIS, VARIÁVEIS (PALETA IMPACTANTE) E RESET GLOBAL
+   ========================================================================== */
+:root {
+    /* Paleta de Cores Premium (Dominância do Vermelho Alerta e Contraste Moderno) */
+    --vermelho-principal: #E53935;   /* Vermelho Vivo Moderno (Fogo/Alerta) */
+    --vermelho-escuro: #B71C1C;      /* Vermelho Profundo (Hover/Destaques) */
+    --vermelho-suave: #FFEBEE;       /* Fundo claro avermelhado para alertas suaves */
+    
+    --cinza-escuro: #1A1A1A;         /* Grafite quase preto (Texto ultra legível) */
+    --cinza-claro: #F8F9FA;          /* Fundo da tela suave e limpo */
+    --branco-puro: #FFFFFF;          /* Fundo dos cards */
+    
+    /* Engenharia de Interface (UI) */
+    --fonte-app: 'Inter', system-ui, -apple-system, sans-serif;
+    --raio-borda: 16px;              /* Bordas bem arredondadas e modernas */
+    --sombra-card: 0 10px 30px rgba(229, 57, 53, 0.06); /* Sombra sutil com a matiz do app */
+    --sombra-botao: 0 4px 15px rgba(229, 57, 53, 0.3);
+    --transicao-suave: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Monitor de Risco de Queimadas | Agrinho 2026</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+/* Reset Global de Engenharia Front-End */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--fonte-app);
+}
 
-    <header>
-        <h1>Guardião Rural</h1>
-        <p>Monitor de Risco de Queimadas & Prevenção de Incêndios</p>
-    </header>
+body {
+    background-color: var(--cinza-claro);
+    color: var(--cinza-escuro);
+    line-height: 1.6;
+    padding-bottom: 3rem;
+}
 
-    <main>
-        
-        <section id="contexto">
-            <h2>O Desafio do Fogo no Campo</h2>
-            <p>
-                Os incêndios rurais causados por estiagens intensas (como os efeitos do La Niña) geram grandes prejuízos econômicos e ambientais. Proteger a lavoura e a reserva natural é um dever de responsabilidade socioambiental (ESG) que conecta o campo e a cidade.
-            </p>
-        </section>
+/* ==========================================================================
+   2. ESTRUTURA E ELEMENTOS SEMÂNTICOS (UX MODERNA)
+   ========================================================================== */
 
-        <section id="calculadora-risco">
-            <h2>Calculadora de Risco Meteorológico</h2>
-            <p>Insira os dados climáticos atuais da sua região para que nossa Inteligência Artificial local avalie o nível de alerta.</p>
-            
-            <form id="formulario-clima">
-                <label for="temperatura">Temperatura Atual (°C):</label>
-                <input type="number" id="temperatura" name="temperatura" placeholder="Ex: 32" required>
+/* Cabeçalho Premium com Efeito Gradiente Neon */
+header {
+    background: linear-gradient(135deg, var(--vermelho-escuro) 0%, var(--vermelho-principal) 100%);
+    color: var(--branco-puro);
+    text-align: center;
+    padding: 3.5rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+}
 
-                <label for="umidade">Umidade Relativa do Ar (%):</label>
-                <input type="number" id="umidade" name="umidade" placeholder="Ex: 25" required>
+/* Detalhe estético moderno no fundo do cabeçalho */
+header::after {
+    content: '';
+    position: absolute;
+    bottom: -50px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120%;
+    height: 80px;
+    background: var(--cinza-claro);
+    border-radius: 50%;
+}
 
-                <button type="submit">Analisar Risco de Incêndio</button>
-            </form>
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-bottom: 0.5rem;
+    position: relative;
+    z-index: 2;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
 
-            <article id="painel-resultado" aria-live="polite">
-                </article>
-        </section>
+header p {
+    font-size: 1.2rem;
+    font-weight: 400;
+    opacity: 0.95;
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    margin: 0 auto;
+}
 
-        <section id="checklist-seguranca">
-            <h2>Checklist Interativo de Segurança da Propriedade</h2>
-            <p>Marque as ações de prevenção já realizadas na sua fazenda:</p>
-            
-            <fieldset>
-                <legend>Manutenção e Barreiras</legend>
-                <label>
-                    <input type="checkbox" name="item-checklist" value="aceiros"> Aceiros limpos e bem dimensionados ao redor das cercas e reservas.
-                </label>
-                <label>
-                    <input type="checkbox" name="item-checklist" value="maquinas"> Inspeção e limpeza de fuligem/palha em colheitadeiras e tratores antes do uso.
-                </label>
-                <label>
-                    <input type="checkbox" name="item-checklist" value="drones"> Monitoramento estratégico de áreas críticas (com apoio de Drones ou vigilância).
-                </label>
-                <label>
-                    <input type="checkbox" name="item-checklist" value="treinamento"> Equipe e trabalhadores rurais treinados em normas de segurança e manejo de fogo.
-                </label>
-            </fieldset>
-        </section>
+/* Layout central do Web App */
+main {
+    max-width: 760px;
+    margin: -1.5rem auto 0 auto; /* Sobreposição elegante no cabeçalho */
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
 
-    </main>
+/* Estilização Avançada de Cards Minimalistas */
+section {
+    background: var(--branco-puro);
+    padding: 2.5rem;
+    border-radius: var(--raio-borda);
+    box-shadow: var(--sombra-card);
+    border: 1px solid rgba(229, 57, 53, 0.08); /* Borda imperceptível na cor do tema */
+    transition: var(--transicao-suave);
+}
 
-    <footer>
-        <p>Projeto Autoral desenvolvido para o Concurso Agrinho 2026 - Categoria Programação.</p>
-        <p>Fontes de pesquisa: Coleção Agrinho, Informativos do Sistema FAEP/SENAR-PR e SEED-PR.</p>
-    </footer>
+section:hover {
+    transform: translateY(-4px); /* Elevação orgânica na interação */
+    box-shadow: 0 15px 35px rgba(229, 57, 53, 0.1);
+}
 
-    <script src="script.js"></script>
-</body>
-</html>
+section h2 {
+    color: var(--vermelho-principal);
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 1.2rem;
+    letter-spacing: -0.5px;
+}
+
+section p {
+    color: #4A4A4A;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* ==========================================================================
+   3. COMPONENTES DE INTERAÇÃO (INPUTS E BOTÕES)
+   ========================================================================== */
+
+#formulario-clima {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+#formulario-clima label {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--cinza-escuro);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Inputs de Número Super Limpos */
+#formulario-clima input[type="number"] {
+    padding: 1rem 1.2rem;
+    border: 2px solid #EAEAEA;
+    border-radius: var(--raio-borda);
+    font-size: 1.1rem;
+    color: var(--cinza-escuro);
+    background-color: #FAFAFA;
+    transition: var(--transicao-suave);
+    width: 100%;
+}
+
+/* Foco de Alta Tecnologia no Input */
+#formulario-clima input[type="number"]:focus {
+    border-color: var(--vermelho-principal);
+    background-color: var(--branco-puro);
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(229, 57, 53, 0.15);
+}
+
+/* Botão Vermelho de Alta Performance */
+#formulario-clima button {
+    background-color: var(--vermelho-principal);
+    color: var(--branco-puro);
+    border: none;
+    padding: 1.1rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: var(--raio-borda);
+    cursor: pointer;
+    box-shadow: var(--sombra-botao);
+    transition: var(--transicao-suave);
+    margin-top: 0.5rem;
+}
+
+#formulario-clima button:hover {
+    background-color: var(--vermelho-escuro);
+    box-shadow: 0 6px 25px rgba(183, 28, 28, 0.4);
+    transform: scale(1.01);
+}
+
+#formulario-clima button:active {
+    transform: scale(0.99);
+}
+
+/* ==========================================================================
+   4. CHECKLIST INTERATIVO DE PREVENÇÃO
+   ========================================================================== */
+fieldset {
+    border: 2px dashed rgba(229, 57, 53, 0.2);
+    border-radius: var(--raio-borda);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+legend {
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0 0.8rem;
+    color: var(--vermelho-escuro);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#checklist-seguranca label {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    cursor: pointer;
+    padding: 0.8rem;
+    border-radius: 8px;
+    background-color: #FAFAFA;
+    transition: var(--transicao-suave);
+}
+
+#checklist-seguranca label:hover {
+    background-color: var(--vermelho-suave);
+}
+
+/* Estilização moderna nativa da Checkbox */
+#checklist-seguranca input[type="checkbox"] {
+    accent-color: var(--vermelho-principal);
+    width: 1.3rem;
+    height: 1.3rem;
+    margin-top: 0.15rem;
+}
+
+/* ==========================================================================
+   5. CLASSES DINÂMICAS PARA INJEÇÃO DO JAVASCRIPT (SISTEMA DE MENSAGENS)
+   ========================================================================== */
+#painel-resultado {
+    margin-top: 1.5rem;
+}
+
+.mensagem-erro {
+    padding: 1.2rem;
+    background-color: #FFEAEB;
+    border-left: 6px solid var(--vermelho-escuro);
+    color: var(--vermelho-escuro);
+    font-weight: 700;
+    border-radius: 8px;
+    font-size: 1rem;
+    box-shadow: 0 4px 12px rgba(183, 28, 28, 0.1);
+}
+
+.resultado-alerta {
+    padding: 1.5rem;
+    background-color: #FFF3E0;
+    border-left: 6px solid #FF9800;
+    color: #B26A00;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.resultado-perigo {
+    padding: 1.5rem;
+    background-color: #FFEBEE;
+    border-left: 6px solid var(--vermelho-principal);
+    color: var(--vermelho-escuro);
+    border-radius: 8px;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   6. RODAPÉ INSTITUCIONAL
+   ========================================================================== */
+footer {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: var(--cinza-escuro);
+    color: #888888;
+    font-size: 0.9rem;
+    margin-top: 5rem;
+    border-top: 4px solid var(--vermelho-principal);
+}
+
+footer p:first-child {
+    color: var(--branco-puro);
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+}
