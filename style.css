@@ -1,121 +1,74 @@
 
-/* ==========================================
-   1. CENTRAL DE VARIÁVEIS (PALETA AGRO/SUSTENTÁVEL)
-   ========================================== */
-:root {
-    /* Cores principais com alto contraste para acessibilidade */
-    --cor-primaria: #1b4d3e;     /* Verde Floresta Fechado (Garante peso visual e tom institucional) */
-    --cor-secundaria: #e67e22;   /* Laranja Alerta/Fogo (Excelente para botões de ação e realces de perigo) */
-    --cor-fundo: #f4f7f5;        /* Off-White Acetinado (Evita o cansaço visual causado pelo branco puro) */
-    --cor-texto-escuro: #2c3e50; /* Cinza Grafite Escuro (Contraste ideal de leitura sobre fundos claros) */
-    --cor-texto-claro: #ffffff;  /* Branco Puro (Para leitura sobre fundos escivos/primários) */
-    --cor-borda: #bdc3c7;        /* Cinza Claro para separação sutil de blocos */
-    
-    /* Configurações de Tipografia e Arredondamento */
-    --fonte-principal: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    --raio-borda: 8px;           /* Cantos suavizados para uma UI moderna e limpa */
-    --transicao: all 0.3s ease;  /* Suavização de efeitos hover nos elementos */
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monitor de Risco de Queimadas | Agrinho 2026</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-/* ==========================================
-   2. RESET GLOBAL (CONSISTÊNCIA ENTRE NAVEGADORES)
-   ========================================== */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <header>
+        <h1>Guardião Rural</h1>
+        <p>Monitor de Risco de Queimadas & Prevenção de Incêndios</p>
+    </header>
 
-/* Base da página */
-body {
-    font-family: var(--fonte-principal);
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto-escuro);
-    line-height: 1.6;
-    padding: 0;
-}
+    <main>
+        
+        <section id="contexto">
+            <h2>O Desafio do Fogo no Campo</h2>
+            <p>
+                Os incêndios rurais causados por estiagens intensas (como os efeitos do La Niña) geram grandes prejuízos econômicos e ambientais. Proteger a lavoura e a reserva natural é um dever de responsabilidade socioambiental (ESG) que conecta o campo e a cidade.
+            </p>
+        </section>
 
-/* ==========================================
-   3. ESTILIZAÇÃO SEMÂNTICA & UX
-   ========================================== */
+        <section id="calculadora-risco">
+            <h2>Calculadora de Risco Meteorológico</h2>
+            <p>Insira os dados climáticos atuais da sua região para que nossa Inteligência Artificial local avalie o nível de alerta.</p>
+            
+            <form id="formulario-clima">
+                <label for="temperatura">Temperatura Atual (°C):</label>
+                <input type="number" id="temperatura" name="temperatura" placeholder="Ex: 32" required>
 
-/* Cabeçalho Principal */
-header {
-    background-color: var(--cor-primaria);
-    color: var(--cor-texto-claro);
-    text-align: center;
-    padding: 2.5rem 1rem;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-}
+                <label for="umidade">Umidade Relativa do Ar (%):</label>
+                <input type="number" id="umidade" name="umidade" placeholder="Ex: 25" required>
 
-header h1 {
-    font-size: 2.2rem;
-    margin-bottom: 0.5rem;
-    letter-spacing: 1px;
-}
+                <button type="submit">Analisar Risco de Incêndio</button>
+            </form>
 
-header p {
-    font-size: 1.1rem;
-    opacity: 0.9;
-}
+            <article id="painel-resultado" aria-live="polite">
+                </article>
+        </section>
 
-/* Container do Conteúdo */
-main {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 0 1.5rem;
-    display: flex;
-    flex-direction: column;
-    gap: 2rem; /* Espaçamento confortável entre as seções */
-}
+        <section id="checklist-seguranca">
+            <h2>Checklist Interativo de Segurança da Propriedade</h2>
+            <p>Marque as ações de prevenção já realizadas na sua fazenda:</p>
+            
+            <fieldset>
+                <legend>Manutenção e Barreiras</legend>
+                <label>
+                    <input type="checkbox" name="item-checklist" value="aceiros"> Aceiros limpos e bem dimensionados ao redor das cercas e reservas.
+                </label>
+                <label>
+                    <input type="checkbox" name="item-checklist" value="maquinas"> Inspeção e limpeza de fuligem/palha em colheitadeiras e tratores antes do uso.
+                </label>
+                <label>
+                    <input type="checkbox" name="item-checklist" value="drones"> Monitoramento estratégico de áreas críticas (com apoio de Drones ou vigilância).
+                </label>
+                <label>
+                    <input type="checkbox" name="item-checklist" value="treinamento"> Equipe e trabalhadores rurais treinados em normas de segurança e manejo de fogo.
+                </label>
+            </fieldset>
+        </section>
 
-/* Seções Gerais */
-section {
-    background-color: var(--cor-texto-claro);
-    padding: 2rem;
-    border-radius: var(--raio-borda);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-}
+    </main>
 
-section h2 {
-    color: var(--cor-primaria);
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-    border-bottom: 2px solid var(--cor-fundo);
-    padding-bottom: 0.5rem;
-}
+    <footer>
+        <p>Projeto Autoral desenvolvido para o Concurso Agrinho 2026 - Categoria Programação.</p>
+        <p>Fontes de pesquisa: Coleção Agrinho, Informativos do Sistema FAEP/SENAR-PR e SEED-PR.</p>
+    </footer>
 
-section p {
-    margin-bottom: 1rem;
-    color: #555;
-}
-
-/* Formulário Interativo */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-    margin-top: 1.5rem;
-}
-
-label {
-    font-weight: 600;
-    font-size: 1rem;
-    color: var(--cor-texto-escuro);
-}
-
-input[type="number"] {
-    width: 100%;
-    padding: 0.8rem;
-    font-size: 1rem;
-    border: 2px solid var(--cor-borda);
-    border-radius: var(--raio-borda);
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto-escuro);
-    transition: var(--transicao);
-}
-
-/* Feedback visual de foco para o usuário (Acessibilidade) */
-input[type="number"]:focus {
-    outline: none;
-    border-color: var(--cor-primaria);
+    <script src="script.js"></script>
+</body>
+</html>
